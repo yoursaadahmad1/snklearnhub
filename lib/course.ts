@@ -4,6 +4,7 @@ export interface Course {
   id: string
   title: string
   description: string
+  sections: any[]
   instructor_id: string
   price: number
   image_url: string

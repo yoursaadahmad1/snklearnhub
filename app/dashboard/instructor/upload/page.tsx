@@ -79,7 +79,14 @@ export default function CourseUploadPage() {
       const course: Partial<Course> & { sections: any } = await createCourse({
         ...courseData,
         price: parseFloat(courseData.price),
-        image_url: imageUrl
+        image_url: imageUrl,
+        sections: sections.map((section) => ({
+          title: section.title,
+          lessons: section.lessons.map((lesson) => ({
+            title: lesson.title,
+            content: lesson.content
+          }))
+        }))
       })
 
       toast({
