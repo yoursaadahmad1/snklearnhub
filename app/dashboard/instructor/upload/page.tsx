@@ -14,9 +14,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Upload, Plus, Trash2 } from "lucide-react"
-import { createCourse } from "@/lib/course"
+import { createCourse, Course } from "@/lib/course"
 import { useUploadThing } from "@/lib/uploadthing"
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/toaster"
 
 export default function CourseUploadPage() {
   const router = useRouter()
@@ -76,11 +76,10 @@ export default function CourseUploadPage() {
         }
       }
 
-      const course = await createCourse({
+      const course: Partial<Course> & { sections: any } = await createCourse({
         ...courseData,
         price: parseFloat(courseData.price),
-        image_url: imageUrl,
-        sections: sections
+        image_url: imageUrl
       })
 
       toast({
